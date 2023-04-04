@@ -11,7 +11,22 @@
   </head>
 
   <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+    <%# render "shared/flashes" %>
+
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %> alert-dismissible fade show" role="alert" style="background-color: #f2abab;">
+        <%= value %>
+      </div>
+    <% end %>
+
+    <script>
+      const alerts = document.querySelectorAll('.alert');
+      alerts.forEach(function(alert) {
+        setTimeout(function() {
+          alert.classList.add('fade-out');
+        }, 2000); // 2000ms = 2 seconds
+      });
+    </script>
 
     <%= yield %>
   </body>
