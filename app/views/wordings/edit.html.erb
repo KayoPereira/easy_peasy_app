@@ -1,0 +1,6 @@
+<%= simple_form_for @wording do |f| %>
+  <%= f.input :text %>
+  <%= f.input :level, collection: Wording.levels.keys.map {|key| Wording.levels[key]}, selected: @wording&.level %>
+  <%= f.input :author %>
+  <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,9 @@
+<%= link_to 'Criar novo texto', new_wording_path %>
+
+<% @wordings.each do |wording| %>
+  <h1 class="mt-5"><%= wording.text %></h1>
+
+  <%= form_with(url: wording_path(wording), method: :delete) do |form| %>
+    <%= form.submit "Excluir artigo" %>
+  <% end %>
+<% end %>
