@@ -2,7 +2,8 @@ class WordingsController < ApplicationController
   before_action :set_wording, only: %i[show edit update destroy]
 
   def index
-    @wordings = policy_scope(Wording).all
+    @wordings = Wording.all
+    authorize @wordings
   end
 
   def show
@@ -10,10 +11,12 @@ class WordingsController < ApplicationController
 
   def new
     @wording = Wording.new
+    authorize @wording
   end
 
   def create
     @wording = Wording.new(wording_params)
+    authorize @wording
     if @wording.save
       redirect_to wording_path(@wording)
     else
@@ -22,9 +25,11 @@ class WordingsController < ApplicationController
   end
 
   def edit
+    authorize @wording
   end
 
   def update
+    authorize @wording
     if @wording.update(wording_params)
       redirect_to wording_path(@wording)
     else
@@ -33,6 +38,7 @@ class WordingsController < ApplicationController
   end
 
   def destroy
+    authorize @wording
     @wording.destroy
     redirect_to wordings_path
   end
@@ -40,7 +46,7 @@ class WordingsController < ApplicationController
   private
 
   def set_wording
-    @wording = policy_scope(Wording).find(params[:id])
+    @wording = Wording.find(params[:id])
   end
 
   def wording_params
