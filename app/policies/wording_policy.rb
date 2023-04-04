@@ -1,32 +1,42 @@
-class WordingPolicy
-  class Scope
-    def initialize(user, scope)
-      @user  = user
-      @scope = scope
-    end
+class WordingPolicy < ApplicationPolicy
+  attr_reader :user, :record
 
-    def resolve
-      # if user.admin?
-      scope.all
-      # else
-      #   scope.where(published: true)
-      # end
-    end
-
-    private
-
-    attr_reader :user, :scope
+  def initialize(user, record)
+    @user = user
+    @record = record
   end
 
   def index?
-    true
+    can_manage? || user.student? || user.teacher?
   end
 
   def show?
-    true
+    index?
+  end
+
+  def new?
+    can_manage?
+  end
+
+  def create?
+    can_manage?
   end
 
   def edit?
-    record.user
+    can_manage?
+  end
+
+  def update?
+    can_manage?
+  end
+
+  def destroy?
+    can_manage?
+  end
+
+  private
+
+  def can_manage?
+    user.admin?
   end
 end
