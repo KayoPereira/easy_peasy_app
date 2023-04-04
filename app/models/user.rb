@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # has_many :wordings
+  enum :role, {
+    admin: 'Admin',
+    teacher: 'Professor',
+    student: 'Aluno'
+  }
 end
