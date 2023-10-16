@@ -1,13 +1,12 @@
-<h1>Chegou</h1>
-
 <% @students.each do |student| %>
   <%= link_to student_path(student), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
     <p>Delete</p>
   <% end %>
+  <%= link_to edit_student_path(student) do %>
+    <p>Edit</p>
+  <% end %>
   <p><%= student.name %></p>
-  <p><%= student.monthly_lessons %></p>
   <p><%= student.language %></p>
-  <p><%= student.level %></p>
   <hr>
 <% end %>
 

@@ -1,0 +1,8 @@
+<%= link_to 'Gerar novo pagamento', new_student_payment_path(@student) %>
+
+<% @payments.each do |payment| %>
+  <p>R$<%= payment.price %> - <%= payment.month %></p>
+  <%= link_to student_payment_path(student_id: payment.student_id,id: payment.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+    <p>Delete</p>
+  <% end %>
+<% end %>

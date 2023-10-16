@@ -1,0 +1,51 @@
+<%= link_to student_path(@student), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+  <p>Delete</p>
+<% end %>
+
+<%= link_to edit_student_path(@student) do %>
+  <p>Edit</p>
+<% end %>
+
+<p><%= @student.name %></p>
+<p><%= @student.monthly_lessons %></p>
+<p><%= @student.language %></p>
+<p><%= @student.level %></p>
+<hr>
+
+<% @student_lessons.each_with_index do |student_lesson, index| %>
+  <div>
+    <% if @student_classes_given[index] %>
+      <input type="checkbox" id="<% index %>" class="class-given checked" checked />
+    <% else %>
+      <input type="checkbox" id="<% index %>" name="lesson-<% index %>" class="class-given" value="lesson-<% index %>" />
+    <% end %>
+    <label for="<% index %>">Aula <%= index + 1 %></label>
+  </div>
+
+<% end %>
+<button class="btn btn-primary save" id="save">Salvar</button>
+
+<%= link_to "back", students_path, class: "btn btn-primary" %>
+
+
+<script>
+  const saveClassGivenBtn = document.querySelector('.save')
+
+  const checkBoxesInput = document.querySelectorAll('.class-given')
+
+  checkBoxesInput.forEach((checkBoxInput) => {
+    checkBoxInput.addEventListener('click', (event) => {
+      event.preventDefault()
+      console.log(event.target.classList)
+      // event.target.classList.toggle('checked')
+    })
+  })
+
+  if(saveClassGivenBtn){
+    saveClassGivenBtn.addEventListener('click', (event) => {
+      event.preventDefault()
+      const classGivenCheckBoxes = document.querySelectorAll('.checked')
+      console.log(classGivenCheckBoxes.length)
+    })
+  }
+</script>
