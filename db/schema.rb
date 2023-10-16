@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_11_163603) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_16_220804) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,8 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_163603) do
     t.string "month"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "students_id", null: false
-    t.index ["students_id"], name: "index_payments_on_students_id"
+    t.bigint "student_id", null: false
+    t.index ["student_id"], name: "index_payments_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_163603) do
     t.string "language"
     t.string "level"
     t.string "current_month"
-    t.integer "class_given"
+    t.integer "class_given", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -55,5 +55,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_11_163603) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "payments", "students", column: "students_id"
+  add_foreign_key "payments", "students"
 end

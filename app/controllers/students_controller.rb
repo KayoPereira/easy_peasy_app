@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: %i[destroy]
+  before_action :set_student, only: %i[edit update destroy show]
   def index
     @students = Student.all
   end
@@ -11,13 +11,23 @@ class StudentsController < ApplicationController
   def create
     @student = Student.new(student_params)
     if @student.save
-      redirect_to students_path(@student)
+      redirect_to student_path(@student)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def show; end
+  def show
+    @student_lessons = (1..(@student.monthly_lessons)).to_a
+    @student_classes_given = (1..(@student.class_given)).to_a
+  end
+
+  def edit; end
+
+  def update
+    @student.update(student_params)
+    redirect_to students_path
+  end
 
   def destroy
     @student.destroy

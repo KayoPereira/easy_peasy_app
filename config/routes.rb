@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   # resources :wordings
-  resources :students
+  resources :students do
+    resources :payments, only: %i[new create destroy]
+    get '/payments', to: "payments#student_index", as: :student_payment_index
+  end
 end
