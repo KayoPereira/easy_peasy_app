@@ -4,8 +4,8 @@
   <div class="row"><%= f.input :name, placeholder: "Enter student name" %></div>
   <div class="row"><%= f.input :monthly_lessons %></div>
   <div class="row">
-    <div class="col-6"><%= f.input :language %></div>
-    <div class="col-6"><%= f.input :level %></div>
+    <div class="col-6"><%= f.input :language, collection: Student.languages.keys %></div>
+    <div class="col-6"><%= f.input :level, collection: Student.levels.keys %></div>
   </div>
   <%= f.submit class: 'btn btn-success' %>
 <% end %>
