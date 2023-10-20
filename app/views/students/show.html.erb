@@ -1,17 +1,39 @@
-<%= link_to student_path(@student), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-  <p>Delete</p>
-<% end %>
+<nav class="navbar navbar-inverse mark-list">
+  <div class="container-fluid justify-content-between">
+    <%= link_to students_path do %>
+      <i class="fa-solid fa-arrow-left-long fa-lg"></i>
+    <% end %>
+    <h2 class="title-text"><%= @student.name.capitalize %></h2>
 
-<%= link_to edit_student_path(@student) do %>
-  <p>Edit</p>
-<% end %>
+    <li class="nav-item dropdown">
+      <button class="dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <%= link_to edit_student_path(@student), class:"dropdown-item" do %>
+          <i class="fa-solid fa-pen-to-square fa-lg"></i> Edit
+        <% end %>
+        <%= link_to student_path(@student), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"dropdown-item" do %>
+          <i class="fa-solid fa-trash-can fa-lg" style="color: #c30404;"></i> Delete
+        <% end %>
+      </div>
+    </li>
+  </div>
+</nav>
 
-<p><%= @student.name %></p>
-<p><%= @student.monthly_lessons %></p>
-<p><%= @student.language %></p>
-<p><%= @student.level %></p>
-<hr>
+<div class="container info-student">
+  <div class="card my-5 card-list">
+    <div class="row mt-2">
+      <div class="col-12 mx-3">
+        <p><strong>Monthly Lessons: </strong><%= @student.monthly_lessons %></p>
+        <p><strong>language: </strong><%= @student.language %></p>
+        <p><strong>Level: </strong><%= @student.level %></p>
+      </div>
+    </div>  
+  </div>
+</div>
 
+<!--
 <% @student_lessons.each_with_index do |student_lesson, index| %>
   <div>
     <% if @student_classes_given[index] %>
@@ -49,3 +71,4 @@
     })
   }
 </script>
+-->
