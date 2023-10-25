@@ -1,4 +1,9 @@
 class Student < ApplicationRecord
+  has_many :payments, dependent: :destroy
+  validates :name, presence: true
+  validates :monthly_lessons, presence: true
+  validates :language, presence: true
+  validates :level, presence: true
   enum :language, {
     english: 'English',
     spanish: 'Spanish',

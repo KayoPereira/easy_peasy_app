@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid justify-content-between">
     <%= link_to root_path do %>
-      <i class="fa-solid fa-arrow-left-long fa-lg heading"></i>
+      <i class="fa-solid fa-arrow-left-long fa-lg heading d-none"></i>
     <% end %>
     <h2 class="text-center my-2 heading title-text">My Students</h2>
     <%= link_to new_student_path do %>
@@ -15,10 +15,10 @@
       <div class="col-6 my-2">
         <div class="card-student" >
           <%= link_to student_path(student), class:"text-decoration-none" do %>
-            <p class="mb-3 student-text text-center"><%= student.name %></p>
-            <p class="mb-3 student-text text-center"><%= student.language %></p>
-            <%= link_to student_path(student), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-              <i class="fa-solid fa-trash m-2"></i>
+            <p class="mb-3 student-text text-center"><strong><%= student.name.capitalize %></strong></p>
+            <p class="mb-3 student-text text-center"><strong><%= Student.languages[student.language] %></strong></p>
+            <%= link_to student_path(student), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "m-2 text-decoration-none" do %>
+              <i class="fa-solid fa-trash"></i>
             <% end %>
             <%= link_to edit_student_path(student) do %>
               <i class="fa-solid fa-pen-to-square"></i>
