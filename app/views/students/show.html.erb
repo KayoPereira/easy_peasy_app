@@ -10,6 +10,12 @@
         <i class="fa-solid fa-gear"></i>
       </button>
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+        <%= link_to new_student_payment_path(@student), class:"dropdown-item" do %>
+          <i class="fa-regular fa-money-bill-1" style="color: #118f00;"></i> Add Payment
+        <% end %>
+        <%= link_to student_student_payment_index_path(@student), class:"dropdown-item" do %>
+          <i class="fa-regular fa-money-bill-1" style="color: #118f00;"></i> View Payments
+        <% end %>
         <%= link_to edit_student_path(@student), class:"dropdown-item" do %>
           <i class="fa-solid fa-pen-to-square fa-lg"></i> Edit
         <% end %>
@@ -24,14 +30,18 @@
 <div class="container info-student">
   <div class="card my-5 card-list">
     <div class="row mt-2">
-      <div class="col-12 mx-3">
+      <div class="col-12">
+        <div class="mx-3">
         <p><strong>Monthly Lessons: </strong><%= @student.monthly_lessons %></p>
-        <p><strong>language: </strong><%= @student.language %></p>
-        <p><strong>Level: </strong><%= @student.level %></p>
+        <p><strong>language: </strong><%= Student.languages[@student.language] %></p>
+        <p><strong>Level: </strong><%= Student.levels[@student.level] %></p>
+        </div>
       </div>
-    </div>  
+    </div>
   </div>
 </div>
+
+
 
 <!--
 <% @student_lessons.each_with_index do |student_lesson, index| %>

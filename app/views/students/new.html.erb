@@ -1,11 +1,11 @@
 <div class="container">
-  <h1>New Student</h1>
+  <h1 class="title-text">New Student</h1>
   <%= simple_form_for(@student) do |f| %>
-    <div class="row"><%= f.input :name, placeholder: "Enter student name" %></div>
-    <div class="row"><%= f.input :monthly_lessons %></div>
+    <div class="row student-text"><%= f.input :name, placeholder: "Enter student name" %></div>
+    <div class="row student-text"><%= f.input :monthly_lessons %></div>
     <div class="row">
-      <div class="col-6"><%= f.input :language, collection: Student.languages.keys %></div>
-      <div class="col-6"><%= f.input :level, collection: Student.levels.keys %></div>
+      <div class="col-6 student-text"><%= f.input :language, collection: Student.languages.values %></div>
+      <div class="col-6 student-text"><%= f.input :level, collection: Student.levels.values %></div>
     </div>
     <%= f.submit class: 'btn btn-success' %>
   <% end %>
